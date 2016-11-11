@@ -1,0 +1,14 @@
+#  For formatting git commit messages #
+message.txt
+
+# Environment
+*learning*
+
+# Mac file
+.DS_Store
+
+# Comppiled python file
+*.pyc
+
+# Shhhhhhhhhh
+secrets.sh
