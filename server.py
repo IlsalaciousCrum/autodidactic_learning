@@ -19,8 +19,6 @@ def say_hello():
 
 if __name__ == "__main__":
 
-    app.debug = True
-
     DEBUG = "NO_DEBUG" not in os.environ
 
     PORT = int(os.environ.get("PORT", 5000))
