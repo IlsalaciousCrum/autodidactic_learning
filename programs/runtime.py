@@ -2,7 +2,10 @@ import random
 
 
 def runtime_flashcards():
-    "Returns a random runtime question and answer from a dictionary"
+    """Returns a random runtime question and answer from a dictionary
+    https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
+    http://www.daveperrett.com/articles/2010/12/07/comp-sci-101-big-o-notation/
+    """
 
     runtime_dict = {"What is runtime or runtime complexity?": "How quickly the time it takes to run a program grows relative to the input, as the input gets arbitrarily large.",
                     "What is O(1) called?": "Constant time",

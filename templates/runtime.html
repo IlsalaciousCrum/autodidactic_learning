@@ -33,6 +33,7 @@
             {% for card in flashcard %}
             <div class="col-xs-6">
                 <div>{{ card[0] }}</div>
+                <button type="button" class="btn btn-primary" id="showButton">Show/Hide Answer</button>
             </div>
 
             <div class="col-xs-6" id="answer" hidden>
@@ -40,29 +41,23 @@
             </div>
             {% endfor %}
         </div>
-        <button type="button" class="btn btn-primary" id="showButton">Show Answer</button>
 
-<!-- The button should say "show answer" but then when clicked it should toggle the answer and update the button to read "hide answer" -->
-<!-- Button for Ajax calls -->
+        
 
     </div>
 
     <script>
     "use strict";
 
-        $("#showButton").click(function(){
+    function showAns(evt) {
         $("#answer").toggle();
-        $("#showButton").attr("value", "Hide Answer").attr("id","hideButton");
         console.log("show answer");
-    });
+    }
 
-        $("#hideButton").click(function(){
-        $("#answer").toggle();
-        $("#hideButton").attr("value", "Show Answer").attr("id","showButton");
-        console.log("hide answer");
-    });
+    $("#showButton").click("click", showAns)
+
 
     </script>
-    </div>
-    </body>
-    </html>
+</div>
+</body>
+</html>
