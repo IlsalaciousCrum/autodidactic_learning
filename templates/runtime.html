@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>  
+<head>
+    <title>Big O Notation Flashcards</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css">
+    <style>
+    .row > div > div {
+        text-align: center;
+        padding-top: 4em;
+        padding-bottom: 4em;
+        font-size: 200%;
+        font-weight: bold;
+        border: solid 1px black;
+        background-color: lightblue;
+    }
+    </style>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Big O Notation</h1>
+
+            <p class="lead">Silly, quick project using Python, AJAX calls, Bootstrap, JQuery, Flask, Flask-Jinja</p>
+        </div>
+
+        <p>Runtime Flash Cards</p>
+
+        <div class="row">
+            {% for card in flashcard %}
+            <div class="col-xs-6">
+                <div>{{ card[0] }}</div>
+            </div>
+
+            <div class="col-xs-6" id="answer" hidden>
+                <div>{{ card[1] }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="btn btn-primary" id="showButton">Show Answer</button>
+
+<!-- The button should say "show answer" but then when clicked it should toggle the answer and update the button to read "hide answer" -->
+<!-- Button for Ajax calls -->
+
+    </div>
+
+    <script>
+    "use strict";
+
+        $("#showButton").click(function(){
+        $("#answer").toggle();
+        $("#showButton").attr("value", "Hide Answer").attr("id","hideButton");
+        console.log("show answer");
+    });
+
+        $("#hideButton").click(function(){
+        $("#answer").toggle();
+        $("#hideButton").attr("value", "Show Answer").attr("id","showButton");
+        console.log("hide answer");
+    });
+
+    </script>
+    </div>
+    </body>
+    </html>
