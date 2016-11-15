@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
-from programs.runtime import runtime_flashcards
+from programs.runtime import runtime_flashcards, flashcard_ajax
 
 import os
 
@@ -30,6 +30,15 @@ def runtime():
     flashcard = runtime_flashcards()
 
     return render_template("runtime.html", flashcard=flashcard)
+
+
+@app.route('/runtime.json')
+def refresh_runtime():
+    """Returns a new flashcard"""
+
+    flashcard = flashcard_ajax()
+
+    return jsonify(flashcard)
 
 #  ____________________________________
 

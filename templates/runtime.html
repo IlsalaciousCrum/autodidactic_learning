@@ -9,6 +9,9 @@
         text-align: center;
         padding-top: 4em;
         padding-bottom: 4em;
+        padding-left: 2em;
+        padding-right: 2em;
+
         font-size: 200%;
         font-weight: bold;
         border: solid 1px black;
@@ -22,40 +25,76 @@
 <body>
     <div class="container">
         <div class="page-header">
-            <h1>Big O Notation</h1>
+            <h1>Big O Notation Flashcards</h1>
 
             <p class="lead">Silly, quick project using Python, AJAX calls, Bootstrap, JQuery, Flask, Flask-Jinja</p>
         </div>
 
-        <p>Runtime Flash Cards</p>
-
         <div class="row">
-            {% for card in flashcard %}
-            <div class="col-xs-6">
-                <div>{{ card[0] }}</div>
+            <div class="col-xs-6" style="text-align:left">
                 <button type="button" class="btn btn-primary" id="showButton">Show/Hide Answer</button>
             </div>
-
-            <div class="col-xs-6" id="answer" hidden>
-                <div>{{ card[1] }}</div>
+            <div class="col-xs-6" style="text-align:right">
+                <button type="button" class="btn btn-success" id="newCard">Next flashcard &rarr;</button>
             </div>
-            {% endfor %}
         </div>
 
-        
+        <div class="row" id="card" style="margin-top:1em">
+                {% for card in flashcard %}
+                <div class="col-xs-6">
+                    <div>
+                        {{ card[0] }}
+                    </div>
+                </div>
+
+                <div class="col-xs-6" id="answer" hidden>
+                    <div>
+                        {% if card[0] == "What are the runtimes in order of best to worst?" %}
+                        {% for each in card[1] %}
+                        {{ each }}<br>
+                        {% endfor %}
+                        {% elif card[0] == "What are the runtimes in order of worst to best?" %}
+                        {% for each in card[1] %}
+                        {{ each }}<br>
+                        {% endfor %}
+                        {% else %}
+                        {% if card[1]|length <= 50 %}
+                        {{ card[1] }}
+                        {% else %}
+                        <p style="font-size:75%">
+                            {{ card[1] }}
+                        </p>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
     </div>
-
     <script>
     "use strict";
 
     function showAns(evt) {
         $("#answer").toggle();
-        console.log("show answer");
+        console.log("Toggled answer");
     }
 
     $("#showButton").click("click", showAns)
 
+    function replaceCard(results) {
+        var newCard = results;
+        $('#card').html(newCard);
+        console.log("Finished refresh");
+    }
+
+    function getCard() {
+        $.get('/runtime.json', replaceCard);
+        console.log("Finished sending AJAX");
+    }
+
+    $('#newCard').on('click', getCard)
 
     </script>
 </div>

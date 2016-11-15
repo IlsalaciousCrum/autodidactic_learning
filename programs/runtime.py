@@ -4,7 +4,7 @@ import random
 def runtime_flashcards():
     """Returns a random runtime question and answer from a dictionary
     https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/
-    http://www.daveperrett.com/articles/2010/12/07/comp-sci-101-big-o-notation/
+
     """
 
     runtime_dict = {"What is runtime or runtime complexity?": "How quickly the time it takes to run a program grows relative to the input, as the input gets arbitrarily large.",
@@ -17,8 +17,8 @@ def runtime_flashcards():
                     "What is O(n!) called?": "Factorial time",
                     "Define quadratic": "Involving the second and no higher power of an unknown quantity or variable.",
                     "What is asymptotic behavior?": "The shape that a graph takes as it's line approaches infinity. Big O Notation is a type of asymptotic analysis",
-                    "What are the runtimes in order of best to worst?": ["Constant time - O(1)", "Logarithmic time - O(log n)", "Linear time - O(n)", "Also logarithmic runtime - O(n log n)", "Quadratic time - O(n^2)", "Also exponential - O(2^n)", "Factorial time - O(n!)"],
-                    "What are the runtimes in order of worst to best?": ["Factorial time - O(n!)", "Also exponential - O(2^n)", "Quadratic time - O(n^2)", "Also logarithmic runtime - O(n log n)", "Linear time - O(n)", "Logarithmic time - O(log n)", "Constant time - O(1)"],
+                    "What are the runtimes in order of best to worst?": ["Constant time - O(1)", "Logarithmic time - O(log n)", "Linear time - O(n)", "Loglinear runtime - O(n log n)", "Quadratic time - O(n^2)", "Exponential - O(2^n)", "Factorial time - O(n!)"],
+                    "What are the runtimes in order of worst to best?": ["Factorial time - O(n!)", "Exponential - O(2^n)", "Quadratic time - O(n^2)", "Loglinear runtime - O(n log n)", "Linear time - O(n)", "Logarithmic time - O(log n)", "Constant time - O(1)"],
                     "Tell me about O(n)": "Linear runtime means that if your list is n long, it takes n time to do your calculations.",
                     "Tell me about O(1)": "Constant time means that the program will take the same time no matter how large the input.",
                     "Tell me about O(n!)": "Factorial time involves doing something for all possible permutations of the n elements. It is impractical for any reasonably large input size n.",
@@ -39,4 +39,22 @@ def runtime_flashcards():
 
     return random.sample(runtime_dict.items(), 1)
 
-runtime_flashcards()
+
+def flashcard_ajax():
+    """Formats html json for an ajax call"""
+
+    card = runtime_flashcards()
+    for each in card:
+        card = each
+    question = card[0]
+    answer = card[1]
+    font = ""
+
+    if isinstance(answer, list):
+        answer = "<br>".join(answer)
+    elif len(answer) >= 50:
+        font = '<p style="font-size:75%">'
+
+    response_string = '<div class="col-xs-6"><div>{0}</div></div><div class="col-xs-6" id="answer" hidden><div>{1}{2}</div></div>'.format(question, font, answer)
+
+    return response_string
