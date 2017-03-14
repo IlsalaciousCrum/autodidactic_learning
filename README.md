@@ -1,7 +1,7 @@
 
 # Autodidactic Learning
 
-This project is deployed at www.ilsagordon.com/hello
+The progress on this project thus far is deployed at www.ilsagordon.com/runtime
 
 #### Goal
 
